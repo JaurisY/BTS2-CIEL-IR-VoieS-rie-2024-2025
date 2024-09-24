@@ -9,32 +9,31 @@ String s = "";
 void setup()
 {
   Serial.begin(9600);
-  pinMode(2, INPUT);
-  digitalWrite(2, HIGH);
-  pinMode(3, INPUT);
-  digitalWrite(3, HIGH);
-  pinMode(4, INPUT);
-  digitalWrite(4, HIGH);
-  pinMode(11, OUTPUT);
-  digitalWrite(11, HIGH);
-  pinMode(12, OUTPUT);
-  digitalWrite(12, HIGH);
-  pinMode(13, OUTPUT);
-  digitalWrite(13, HIGH);
+  
+  for(int i = 2; i <= 4; i++)
+  {
+    pinMode(i, INPUT);
+  	digitalWrite(i, HIGH);
+  }
+  
+  for(int i = 11; i <= 13; i++)
+  {
+    pinMode(i, OUTPUT);
+  	digitalWrite(i, HIGH);
+  }
+  
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
 void remplir()
 {
-  
   if(digitalRead(4) == LOW)
     tableauStock[0] = 10;
   if(digitalRead(3) == LOW)
     tableauStock[1] = 10;
   if(digitalRead(2) == LOW)
     tableauStock[2] = 10;
-  
 }
 
 void receptionCommande()
