@@ -14,12 +14,8 @@ void setup()
   {
     pinMode(i, INPUT);
   	digitalWrite(i, HIGH);
-  }
-  
-  for(int i = 11; i <= 13; i++)
-  {
-    pinMode(i, OUTPUT);
-  	digitalWrite(i, HIGH);
+    pinMode(i+9, OUTPUT);
+  	digitalWrite(i+9, HIGH);
   }
   
 }
