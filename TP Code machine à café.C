@@ -24,12 +24,11 @@ void setup()
 
 void remplir()
 {
-  if(digitalRead(4) == LOW)
-    tableauStock[0] = 10;
-  if(digitalRead(3) == LOW)
-    tableauStock[1] = 10;
-  if(digitalRead(2) == LOW)
-    tableauStock[2] = 10;
+  for(int i = 0; i <= 2; i++)
+  {
+    if(digitalRead(4-i) == LOW)
+      tableauStock[i] = 10;
+  }
 }
 
 void receptionCommande()
@@ -50,52 +49,29 @@ void receptionCommande()
 
 void servirBoisson()
 {
-  if(s == tableauDico[0])
-    tableauStock[0] -= 1;
-  if(s == tableauDico[1])
-    tableauStock[1] -= 1;
-  if(s == tableauDico[2])
-    tableauStock[2] -= 1;
+  for(int i = 0; i <= 2; i++)
+  {
+  	if(s == tableauDico[i])
+    	tableauStock[i] -= 1;
+  }
 }
 
 void checkLumiere()
-{ //cafe
-  if (tableauStock[0] > 5)
-  	digitalWrite(13, HIGH);
-  if (tableauStock[0] <=5 && tableauStock[0] >2)
+{ 
+  for(int i = 0; i <= 2; i++)
   {
-   	digitalWrite(13, LOW);
-    delay(1000);
-    digitalWrite(13, HIGH);
-    delay(1000);
+    if (tableauStock[i] > 5)
+  		digitalWrite(13-i, HIGH);
+  	if (tableauStock[i] <=5 && tableauStock[i] >2)
+  	{
+   		digitalWrite(13-i, LOW);
+    	delay(1000);
+    	digitalWrite(13-i, HIGH);
+    	delay(1000);
+  	}
+  	if (tableauStock[i] < 3)
+    	digitalWrite(13-i, LOW);
   }
-  if (tableauStock[0] < 3)
-    digitalWrite(13, LOW);
-  //chocolat chaud
-  if (tableauStock[1] > 5)
-  	digitalWrite(12, HIGH);
-  if (tableauStock[1] <=5 && tableauStock[1] >2)
-  {
-   	digitalWrite(12, LOW);
-    delay(1000);
-    digitalWrite(12, HIGH);
-    delay(1000);
-  }
-  if (tableauStock[1] < 3)
-    digitalWrite(12, LOW);
-  //the
-  if (tableauStock[2] > 5)
-  	digitalWrite(11, HIGH);
-  if (tableauStock[2] <=5 && tableauStock[2] >2)
-  {
-   	digitalWrite(11, LOW);
-    delay(1000);
-    digitalWrite(11, HIGH);
-    delay(1000);
-  }
-  if (tableauStock[2] < 3)
-    digitalWrite(11, LOW);
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
